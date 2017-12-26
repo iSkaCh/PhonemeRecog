@@ -2,6 +2,7 @@
 School project
 
 for TIMIT nist to riff conversion ( windows ) : 
+
 1- install sox.
 
 2- add sox to path. Temporary solution : 
