@@ -1,7 +1,7 @@
 # PhonemeRecog
 School project
 
-for TIMIT nist to riff conversion ( windows ) : 
+For TIMIT nist to riff conversion ( windows ) : 
 
 1- install sox.
 
