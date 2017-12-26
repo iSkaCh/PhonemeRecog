@@ -28,21 +28,22 @@ def read_phn (file_location):
         if end -begin< minlen : minlen = end-begin
         delimiters.append ( [begin, end])
         labels.append(phn_tab[i][2])
-        
     statsfile.truncate(0)
     statsfile.write ( "maxlen  "+str(maxlen)+"\n")
     statsfile.write ( "minlen  "+str(minlen)+"\n")
     statsfile.close()
     
     return delimiters,labels
-def wav_2_ph():
+def wav_2_ph(folder):
     """generates list of phoneme data and labels"""
-    wavfile_list =glob.glob("**/*RIFF.wav",recursive=True)
+    wavfile_list =glob.glob(folder+"/**/*RIFF.wav",recursive=True)
     ph_datalist = []
-    for wavfile in wavfile_list :
+    labels_list = []
+    for wavfile in wavfile_list[:10] :
         phnfile= wavfile [0:len(wavfile)-8]+".PHN"
         data_table = read (wavfile)[1]
         delimiters, labels = read_phn (phnfile)
+        labels_list.append (labels)
         for delimiter in delimiters :
             #if delimiter[1]-delimiter[0] == 32 :
                 #print (wavfile)
@@ -51,8 +52,8 @@ def wav_2_ph():
                 #print (wavfile)
                 #break
             ph_datalist.append( data_table[delimiter[0]:delimiter[1]])
-    return ph_datalist,labels  
+    return ph_datalist,[ph for l in labels_list for ph in l]
 
 if __name__ == '__main__':
-    ph_datalist,label = wav_2_ph()
-    np.set_printoptions(threshold=np.nan)
+    ph_datalist,labels = wav_2_ph("files\TIMIT\TRAIN")
+    print (labels)
