@@ -11,7 +11,7 @@ SET PATH=%PATH%;"C:\path to sox folder"
 ```
 3- go to directory containing TIMIT data.
 
-4- run this command. ( not he fastest but does the trick ) 
+4- run this command. ( not the fastest but does the trick ) 
 ```bash
 forfiles /s /m *.wav /c "cmd /c sox  @file @fnameRIFF.wav"
 ```
