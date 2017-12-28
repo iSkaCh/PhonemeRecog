@@ -1,4 +1,3 @@
-
 import numpy as np 
 import glob
 from scipy.io.wavfile import read
@@ -37,13 +36,15 @@ def read_phn (file_location):
 def wav_2_ph(folder):
     """generates list of phoneme data and labels"""
     wavfile_list =glob.glob(folder+"/**/*RIFF.wav",recursive=True)
-    ph_datalist = []
+    ph_data = []
     labels_list = []
     for wavfile in wavfile_list[:10] :
         phnfile= wavfile [0:len(wavfile)-8]+".PHN"
         data_table = read (wavfile)[1]
         delimiters, labels = read_phn (phnfile)
         labels_list.append (labels)
+        i=0
+        print ( phnfile )
         for delimiter in delimiters :
             #if delimiter[1]-delimiter[0] == 32 :
                 #print (wavfile)
@@ -51,9 +52,10 @@ def wav_2_ph(folder):
             #if delimiter[1]-delimiter[0] == 74285 : 
                 #print (wavfile)
                 #break
-            ph_datalist.append( data_table[delimiter[0]:delimiter[1]])
-    return ph_datalist,[ph for l in labels_list for ph in l]
+            ph_data.append( [data_table[delimiter[0]:delimiter[1]],labels[i]])
+            i+=1
+    return ph_data
 
 if __name__ == '__main__':
-    ph_datalist,labels = wav_2_ph("files\TIMIT\TRAIN")
-    print (labels)
+    ph_data = wav_2_ph("files\TIMIT\TRAIN")
+    print (ph_data)
