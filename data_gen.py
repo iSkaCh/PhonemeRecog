@@ -7,7 +7,7 @@ def read_phn (file_location):
        and a list of the corresponding phonemes """
     phn_tab = [line.split() for line in open(file_location) ]
     
-    statsfile  = open ("stats.txt",'r+')
+    statsfile  = open ("stats.txt",'r+')         #adding a file in yr folder named stats.txt
     stats = [line.split() for line in statsfile ]
     if len (stats) >0:
         maxlen = int (stats[0][1] )
