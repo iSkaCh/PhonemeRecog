@@ -1,13 +1,20 @@
+
 import numpy as np 
 import glob
 from scipy.io.wavfile import read
 from scipy.io.wavfile import write
+phoneme_list = ['b','d','g','p','t','k','dx','q','jh','ch','s','sh','z','zh','f','th','v',
+                'dh','m','n','ng','em','en','eng','nx','l','r','w','y','hh','hv','el',
+                'iy','ih','eh','ey','ae','aa','aw','ay','ah','ao','oy','ow','uh',
+                'uw','uh','uw','ux','er','ax','ix','axr','ax-h','pau','epi','h#',
+                '1','2','bcl','dcl','gcl','pcl','tcl','kcl']
 def read_phn (file_location):
+    
     """reads phn file and returns list of phoneme delimiters
        and a list of the corresponding phonemes """
     phn_tab = [line.split() for line in open(file_location) ]
     
-    statsfile  = open ("stats.txt",'r+')         #adding a file in yr folder named stats.txt
+    statsfile  = open ("stats.txt",'r+')
     stats = [line.split() for line in statsfile ]
     if len (stats) >0:
         maxlen = int (stats[0][1] )
@@ -52,7 +59,9 @@ def wav_2_ph(folder):
             #if delimiter[1]-delimiter[0] == 74285 : 
                 #print (wavfile)
                 #break
-            ph_data.append( [data_table[delimiter[0]:delimiter[1]],labels[i]])
+            y = np.zeros(65)
+            y[phoneme_list.index(labels[i])] = 1
+            ph_data.append( [data_table[delimiter[0]:delimiter[1]],y])
             i+=1
     return ph_data
 
