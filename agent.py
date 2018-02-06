@@ -1,3 +1,5 @@
+#Copyright 2018 IskaCh & samelsamel
+
 import random 
 import numpy as np
 import threading
