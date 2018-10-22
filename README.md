@@ -1,5 +1,5 @@
 # PhonemeRecog
-School project. This work is a proof of concept on using pure neural networks ( with MFCC ) for phoneme recognition. So far only the BGRU model was test, we achieve a 57% on 10k patchs ( but training was stopped while it was still getting better ) accuracy on the whole TIMIT Test set after roughly 16hours of training on a GTX 950M GPU. We will conduct more structured tests in the future. 
+School project. This work is a proof of concept for end to end phoneme recognition using Reccurent Neural Networks ( without MFCC ). So far only the bi-directional Gated Reccurent unit (BGRU) model was tested, we achieve a 57% on 10k batchs accuracy on the whole TIMIT Test set after roughly 16hours of training on a GTX 950M GPU. A paper already studied the use of Convolutional Neural Networks ( https://arxiv.org/pdf/1312.2137.pdf ) achieving up to 70% accuracy.
 
 
 
